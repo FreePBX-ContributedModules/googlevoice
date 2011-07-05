@@ -10,24 +10,24 @@
 		Manage Google Voice accounts as trunks.
 	</description>
 	<changelog>
-		*0.0.1* Creation.
-		*0.0.2* TOS and jabber (jingle?) reload added.
-		*0.0.3* trunk and route options added.
-		*0.0.4* added GPL declarations.
-		*0.0.5* fixed path on delGV action, and corrected trunk dial string
-		*0.0.6* improved outbound route
-		*0.0.7* added donation blurb
-		*0.0.8*	fixed routing/reload, delete routes, and overwriting trunks(?)
+		*0.1.0* make the module work for FreePBX 2.9
 		*0.0.9* changed trunk name to the phonenum
+		*0.0.8*	fixed routing/reload, delete routes, and overwriting trunks(?)
+		*0.0.7* added donation blurb
+		*0.0.6* improved outbound route
+		*0.0.5* fixed path on delGV action, and corrected trunk dial string
+		*0.0.4* added GPL declarations.
+		*0.0.3* trunk and route options added.
+		*0.0.2* TOS and jabber (jingle?) reload added.
+		*0.0.1* Creation.
 	</changelog>
 	<depends>
-		<version>ge2.8</version>
 		<engine>asterisk 1.8</engine>
 		<module>core</module>
 	</depends>
 	<menuitems>
 		<googlevoice>Google Voice</googlevoice>
 	</menuitems>
-	<location>/freedoh/googlevoice-0.0.9.tgz</location>
-	<md5sum>666666666666666666666666666666</md5sum>
+	<location></location>
+	<md5sum></md5sum>
 </module>

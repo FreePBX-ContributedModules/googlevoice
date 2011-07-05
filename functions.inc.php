@@ -18,8 +18,16 @@
  *      MA 02110-1301, USA.
  */
 
-require_once("functions.inc.php");
-require_once("extensions.class.php");
+global $amp_conf;
+// Do we run FreePBX 2.8?
+if(file_exists($amp_conf['AMPWEBROOT']."/admin/extensions.class.php")) {
+  // Yes, then include these files
+  require_once("functions.inc.php");
+  require_once("extensions.class.php");
+  } else {
+        //We are on a FreePBX 2.9 system
+        require_once("libraries/extensions.class.php");
+}
 
 class ext_senddtmf extends extension {
 	var $digits;
