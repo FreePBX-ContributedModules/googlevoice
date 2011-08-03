@@ -29,6 +29,6 @@
 	<menuitems>
 		<googlevoice>Google Voice</googlevoice>
 	</menuitems>
-	<location>contributed_modules/release/googlevoice-0.1.0.tgz</location>
-	<md5sum>c1adf8a74c07a48d6fdc399eac08ddac</md5sum>
+	<location>contributed_modules/release/googlevoice-0.1.1.tgz</location>
+	<md5sum>b3b4a952c5bfd4079fc3c09d7c8d8412</md5sum>
 </module>
