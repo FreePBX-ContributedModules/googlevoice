@@ -24,18 +24,20 @@ if(file_exists($amp_conf['AMPWEBROOT']."/admin/extensions.class.php")) {
   // Yes, then include these files
   require_once("functions.inc.php");
   require_once("extensions.class.php");
-  } else {
-        //We are on a FreePBX 2.9 system
-        require_once("libraries/extensions.class.php");
 }
 
-class ext_senddtmf extends extension {
-	var $digits;
-	function ext_senddtmf($digits) {
-		$this->digits = $digits;
-	} 
-	function output() {
-		return 'SendDTMF('.$this->digits.')';
+function googlevoice_hookGet_config($engine) {
+	global $ext;	
+	if (!method_exists($ext, 'ext_senddtmf')) {		
+		class ext_senddtmf extends extension {
+			var $digits;
+			function ext_senddtmf($digits) {
+				$this->digits = $digits;
+			} 
+			function output() {
+				return 'SendDTMF('.$this->digits.')';
+			}
+		}
 	}
 }
 
