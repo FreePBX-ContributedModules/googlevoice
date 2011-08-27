@@ -188,7 +188,7 @@ if ($action == 'delGV') {
 				</tr>
 
 				<tr>
-					<td><a href="#" class="info"><?php echo _("Username")?>:<span><?php echo _("Your Google Voice username without the '@gmail.com' portion")?></span></a></td>
+					<td><a href="#" class="info"><?php echo _("Username")?>:<span><?php echo _("Your Google Voice username (EG: username@domain.tld) [@gmail.com users can just enter username without '@gmail.com']")?></span></a></td>
 					<td><input size="30" maxlength="30" type="text" name="username" value="<?php echo (isset($username) ? $username : ''); ?>"></td>
 				</tr>
 
