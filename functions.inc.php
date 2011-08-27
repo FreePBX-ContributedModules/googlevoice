@@ -22,6 +22,7 @@ global $amp_conf;
 // Do we run FreePBX 2.8?
 if(file_exists($amp_conf['AMPWEBROOT']."/admin/extensions.class.php")) {
   // Yes, then include these files
+  //I need to know if we really need these files. Questionable.
   require_once("functions.inc.php");
   require_once("extensions.class.php");
 }
@@ -80,8 +81,15 @@ class googlevoice_conf {
 		$accounts = googlevoice_list();
 		foreach ($accounts as $account) {
 			$phonenum = $account[0];
-			$username = $account[1];
-			$address  = $account[1].'@gmail.com';
+                        $full_address = explode('@', $account[1]);
+                        if(array_key_exists(1, $full_address)) {
+                            $username = str_replace('.', '', $account[1]);
+                            $username = str_replace('@', '', $username);
+                            $address  = $full_address[0].'@'.$full_address[1];
+                        } else {
+                            $username = $account[1];
+                            $address  = $account[1].'@gmail.com';
+                        }			
 			$password = $account[2];
 			$output .= "[".$username."]\ntype=client\nserverhost=talk.google.com\n";
 			$output .= "username=".$address."/Talk\nsecret=".$password."\n";
@@ -117,8 +125,15 @@ class googlevoice_conf {
 		foreach ($accounts as $account) {
 			$incontext = "googlein";
 			$phonenum = $account[0];
-			$username = $account[1];
-			$address  = $account[1].'@gmail.com';
+                        $full_address = explode('@', $account[1]);
+                        if(array_key_exists(1, $full_address)) {
+                            $username = str_replace('.', '', $account[1]);
+                            $username = str_replace('@', '', $username);
+                            $address  = $full_address[0].'@'.$full_address[1];
+                        } else {
+                            $username = $account[1];
+                            $address  = $account[1].'@gmail.com';
+                        }
 			$outcontext = 'googlevoice-'.$username;
 
 			/* INBOUND CONTEXT */
@@ -187,6 +202,14 @@ function googlevoice_add($phonenum, $username, $password,$add_trunk,$add_routes)
 	if (DB::IsError($result)) {
 		return false;
 	}
+        
+        $full_address = explode('@', $username);
+        if(array_key_exists(1, $full_address)) {
+            $username = str_replace('.', '', $username);
+            $username = str_replace('@', '', $username);
+        } else {
+            $username = $username;
+        }
 
 	$trunknum = false;
 	if ($add_trunk) {
@@ -194,6 +217,13 @@ function googlevoice_add($phonenum, $username, $password,$add_trunk,$add_routes)
 		$trunknum = core_trunks_add('custom', 'local/$OUTNUM$@googlevoice-'.$username, '', '', $phonenum, '', 'notneeded', '', '', 'off', '', 'off', 'GV_'.$phonenum, '');
 		dbug_write('Trunknum = '.$trunknum.'
 ','');
+                $patterns[] = array(
+                        'prepend_digits' 		=> '1',
+                        'match_pattern_prefix' 	=> '',
+                        'match_pattern_pass' 	=> 'NXXNXXXXXX',
+                        'match_cid' 			=> '',
+                );
+                core_trunks_update_dialrules($trunknum, $patterns);
 		if ($add_routes) {
 			/* OUTBOUND ROUTE */
 			dbug_write('Adding routes
@@ -302,6 +332,7 @@ function googlevoice_del($phonenum) {
 		core_routing_trunk_delbyid($trunknum);	// Not sure if this is necessary
 		googlevoice_del_routes($trunknum,$username);
 		core_trunks_del($trunknum);
+                core_trunks_delete_dialrules($trunknum);
 	}
 	return true;
 }
@@ -348,4 +379,3 @@ function googlevoice_del_routes($trunkID,$username) {
 
 	return;
 }
-?>

@@ -1,7 +1,7 @@
 <module>
 	<rawname>googlevoice</rawname>
 	<name>Google Voice</name>
-	<version>0.1.1</version>
+	<version>0.5.0</version>
 	<publisher>Marcus Brown</publisher>
 	<license>GPLv2+</license>
 	<type>setup</type>
@@ -10,6 +10,7 @@
 		Manage Google Voice accounts as trunks.
 	</description>
 	<changelog>
+                *0.5.0* Added Ability to add Google Apps Voice Accounts. Adding Trunk Prepends instead of just Route Prepends
 		*0.1.1* really fix the FreePBX 2.9 issue
 		*0.1.0* make the module work for FreePBX 2.9
 		*0.0.9* changed trunk name to the phonenum
