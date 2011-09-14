@@ -93,7 +93,7 @@ class googlevoice_conf {
 			$password = $account[2];
 			$output .= "[".$username."]\ntype=client\nserverhost=talk.google.com\n";
 			$output .= "username=".$address."/Talk\nsecret=".$password."\n";
-			$output .= "port=5222\nusetls=yes\nusesasl=yes\nstatus=Available\n";
+			$output .= "port=5222\npriority=1\nusetls=yes\nusesasl=yes\nstatus=Available\n";
 			$output .= "statusmessage=\"No Information Available\"\n";
 			$output .= "timeout=100\nkeepalive=yes\n\n";
 		}
@@ -344,11 +344,9 @@ function googlevoice_update($phonenum,$username,$password) {
 		return array();
     }
 
-	$sql = "UPDATE googlevoice
-			SET username = '?', password = '?'
-         	WHERE phonenum = '?'";
+	$sql = "UPDATE googlevoice SET username = '".$username."', password = '".$password."' WHERE phonenum = '".$phonenum."'";
     $params = array($username, $password, $phonenum);
-	$result = $db->getAssoc($sql,false,$params);
+	$result = $db->query($sql);
 	if (DB::IsError($result) || empty($result)) {
 		return false;
 	}

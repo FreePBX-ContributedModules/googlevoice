@@ -1,7 +1,7 @@
 <module>
 	<rawname>googlevoice</rawname>
 	<name>Google Voice</name>
-	<version>0.5.0</version>
+	<version>0.6.0</version>
 	<publisher>Marcus Brown</publisher>
 	<license>GPLv2+</license>
 	<type>setup</type>
@@ -10,7 +10,8 @@
 		Manage Google Voice accounts as trunks.
 	</description>
 	<changelog>
-                *0.5.0* Added Ability to add Google Apps Voice Accounts. Adding Trunk Prepends instead of just Route Prepends
+		*0.6.0* Added Priority=1, Fixed password/username not updating on edit issue
+        *0.5.0* Added Ability to add Google Apps Voice Accounts. Adding Trunk Prepends instead of just Route Prepends
 		*0.1.1* really fix the FreePBX 2.9 issue
 		*0.1.0* make the module work for FreePBX 2.9
 		*0.0.9* changed trunk name to the phonenum
@@ -30,6 +31,6 @@
 	<menuitems>
 		<googlevoice>Google Voice</googlevoice>
 	</menuitems>
-	<location>contributed_modules/release/googlevoice-0.5.0.tgz</location>
-	<md5sum>80d0e12fd2a4bc11de1734952067e673</md5sum>
+	<location>contributed_modules/release/googlevoice-0.1.1.tgz</location>
+	<md5sum>b3b4a952c5bfd4079fc3c09d7c8d8412</md5sum>
 </module>
