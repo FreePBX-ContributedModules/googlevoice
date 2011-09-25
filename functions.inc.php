@@ -77,7 +77,7 @@ class googlevoice_conf {
 /*
 		$this->use_warning_banner = true;
 */
-		$output = "[general]\ndebug=no\nautoprune=no\nautoregister=yes\n\n";
+		$output = "[general]\ndebug=yes\nautoprune=no\nautoregister=yes\n\n";
 		$accounts = googlevoice_list();
 		foreach ($accounts as $account) {
 			$phonenum = $account[0];
@@ -376,3 +376,4 @@ function googlevoice_del_routes($trunkID,$username) {
 	}
 
 	return;
+}
