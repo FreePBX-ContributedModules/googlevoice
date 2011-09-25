@@ -376,4 +376,3 @@ function googlevoice_del_routes($trunkID,$username) {
 	}
 
 	return;
-}
