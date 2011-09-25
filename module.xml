@@ -25,7 +25,6 @@
 		*0.0.1* Creation.
 	</changelog>
 	<depends>
-		<version>ge2.8</version>
 		<engine>asterisk 1.8</engine>
 		<module>core</module>
 	</depends>
