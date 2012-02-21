@@ -29,7 +29,7 @@ if(file_exists($amp_conf['AMPWEBROOT']."/admin/extensions.class.php")) {
 
 function googlevoice_hookGet_config($engine) {
 	global $ext;	
-	if (!method_exists($ext, 'ext_senddtmf') && (!class_exists('ext_senddtmf'))) {
+	if (!class_exists('ext_senddtmf')) {
 		class ext_senddtmf extends extension {
 			var $digits;
 			function ext_senddtmf($digits) {
